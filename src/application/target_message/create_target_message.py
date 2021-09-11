@@ -1,4 +1,6 @@
 import csv
+import os
+
 from src.infrastructure.telethon.client import get_telethon_number
 import time
 from src.application.message.send_message import send_message
@@ -12,7 +14,7 @@ NUMBER = get_telethon_number()
 
 def create_target_message():
     path = sys.path[0] + \
-        '/src/application/target_message/members-buying-selling-crypto-currency.csv'
+           f'/data/{os.getenv("CSV_FILE")}.csv'
     with open(path, encoding='UTF-8') as f:
         rows = csv.reader(f, delimiter=",", lineterminator="\n")
         next(rows, None)
@@ -37,7 +39,7 @@ def create_target_message():
                     message=message,
                 )
                 target_message.save()
-                if(username != ''):
+                if (username != ''):
                     send_message(username, message + ' ' + message2)
                     time_to_wait = randint(30, 55)
                     print(
