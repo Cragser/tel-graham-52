@@ -4,3 +4,5 @@
 .history/
 *.pyc
 *.csv
+.env
+.idea/

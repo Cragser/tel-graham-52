@@ -1,11 +1,14 @@
-import threading
-from src.application.campaign.create_campaign_table import create_campaign_table
-from src.application.campaign.create_campaign import create_campaign
-from src.application.channel.get_users_from_channel import get_users_from_chanel
+import os
+
+
+# todo update users from group
+# We need a number only for this.
+
+# todo get path
 
 
 def telegram_controller():
-    get_users_from_chanel()
+    # get_users_from_chanel()
 
     # create_campaign('juunuj')
     # get_users_from_chanel()

@@ -1,14 +1,32 @@
+import os
+
 from telethon.sync import TelegramClient
 
-PHONE = '+525548798065'
+PHONE = os.getenv('PHONE')
+
 
 def get_telethon_number():
     return PHONE
 
-def get_telethon_client():
-    api_id = 7446084        # YOUR API_ID
-    api_hash = '6e7412c6a65abbd5b867820314f3b5a3'        # YOUR API_HASH
+
+def _get_telegram_client():
+    api_id = os.getenv('TELEGRAM_API_ID')  # YOUR API_ID
+    api_hash = os.getenv('TELEGRAM_API_HASH')  # YOUR API_HASH
     phone = PHONE
-    client = TelegramClient(phone, api_id, api_hash)
+    return TelegramClient(phone, api_id, api_hash)
+
+
+def get_telethon_client():
+    client = _get_telegram_client()
     client.connect()
     return client
+
+
+def validate_telethon():
+    with _get_telegram_client() as client:
+        client.loop.run_until_complete(client.send_message('me', 'Hello, myself!'))
+
+
+def get_client_with_token():
+    bot_token = os.getenv('TELEGRAM_TOKEN')
+    return _get_telegram_client().start(bot_token=bot_token)
