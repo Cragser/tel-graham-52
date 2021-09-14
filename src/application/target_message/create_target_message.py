@@ -3,10 +3,8 @@ import os
 
 from src.infrastructure.telethon.client import get_telethon_number
 import time
-from src.application.message.send_message import send_message
 from src.domain.TargetMessage import TargetMessage
 import sys
-import threading
 from random import randint
 
 NUMBER = get_telethon_number()
@@ -40,8 +38,8 @@ def create_target_message():
                 )
                 target_message.save()
                 if (username != ''):
-                    send_message(username, message + ' ' + message2)
-                    time_to_wait = randint(30, 55)
+                    # send_message(username, message + ' ' + message2)
+                    time_to_wait = randint(60 * 5, 60 * 5 + 10)
                     print(
                         f'Sending message to {username}, next message in {time_to_wait} seconds')
                     time.sleep(time_to_wait)

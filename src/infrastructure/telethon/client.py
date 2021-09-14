@@ -22,7 +22,7 @@ def get_telethon_client():
     return client
 
 
-def validate_telethon():
+async def validate_telethon():
     with _get_telegram_client() as client:
         client.loop.run_until_complete(client.send_message('me', 'Hello, myself!'))
 
