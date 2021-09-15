@@ -1,6 +1,7 @@
 import csv
 import os
 
+from src.application.message.send_message import send_message
 from src.infrastructure.telethon.client import get_telethon_number
 import time
 from src.domain.TargetMessage import TargetMessage
@@ -38,7 +39,7 @@ def create_target_message():
                 )
                 target_message.save()
                 if (username != ''):
-                    # send_message(username, message + ' ' + message2)
+                    send_message(username, message + ' ' + message2)
                     time_to_wait = randint(60 * 5, 60 * 5 + 10)
                     print(
                         f'Sending message to {username}, next message in {time_to_wait} seconds')
