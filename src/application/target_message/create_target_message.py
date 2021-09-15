@@ -14,7 +14,7 @@ NUMBER = get_telethon_number()
 messages = get_messages()
 
 
-def create_message(name) -> str:
+def create_message(name):
     message = random.choice(messages)
     message = message.replace('{name}', name)
     return message
