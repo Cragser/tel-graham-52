@@ -1,0 +1,2 @@
+Otro mensaje impresionante
+Hola {name}, te encntré en el grupo {group} y me preguntaba si te interesa saber de

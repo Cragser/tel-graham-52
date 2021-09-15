@@ -1,19 +1,24 @@
 import os
 
+from dotenv import load_dotenv
 from telethon.sync import TelegramClient
-
+load_dotenv()
 PHONE = os.getenv('PHONE')
+API_ID = os.getenv('TELEGRAM_API_ID')  # YOUR API_ID
+API_HASH = os.getenv('TELEGRAM_API_HASH')  # YOUR API_HASH
 
+if API_ID == '':
+    raise Exception("API ID IS EMPTY")
+
+if API_HASH == '':
+    raise Exception("API HASH IS EMPTY")
 
 def get_telethon_number():
     return PHONE
 
 
 def _get_telegram_client():
-    api_id = os.getenv('TELEGRAM_API_ID')  # YOUR API_ID
-    api_hash = os.getenv('TELEGRAM_API_HASH')  # YOUR API_HASH
-    phone = PHONE
-    return TelegramClient(phone, api_id, api_hash)
+    return TelegramClient(PHONE, API_ID, API_HASH)
 
 
 def get_telethon_client():
@@ -27,6 +32,3 @@ async def validate_telethon():
         client.loop.run_until_complete(client.send_message('me', 'Hello, myself!'))
 
 
-def get_client_with_token():
-    bot_token = os.getenv('TELEGRAM_TOKEN')
-    return _get_telegram_client().start(bot_token=bot_token)
