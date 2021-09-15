@@ -24,6 +24,7 @@ def _get_telegram_client():
 def get_telethon_client():
     client = _get_telegram_client()
     client.connect()
+    client.start()
     return client
 
 
